@@ -1,40 +1,75 @@
+/* ─────────────────────────────────────────────
+   SwimAI Lexicon · styles.css
+   Design language: deep competition pool.
+   Built for elite coaches, performance staff,
+   and publication in Swimming World / SwimSwam.
+   ───────────────────────────────────────────── */
+
 :root {
-  --bg: #f6f4ef;
+  /* Core palette — Olympic-pool depth */
+  --bg: #f0f6fa;
   --panel: #ffffff;
-  --panel-strong: #111827;
-  --ink: #172033;
-  --muted: #647184;
-  --line: #d9dee7;
-  --line-strong: #b8c0cc;
-  --teal: #147d88;
-  --coral: #c94f3d;
-  --amber: #b9770e;
-  --green: #2f7d4f;
-  --blue: #2f6fbb;
-  --violet: #6b5ca5;
-  --danger-bg: #fff0ed;
-  --warn-bg: #fff8e8;
-  --good-bg: #edf8f1;
-  --radius: 8px;
-  --shadow: 0 18px 50px rgba(17, 24, 39, 0.08);
+  --panel-strong: #0a2e4a;     /* deep water navy */
+  --ink: #0d1f2d;
+  --muted: #5a7389;
+  --line: #cddbe8;
+  --line-strong: #a8bece;
+
+  /* Brand accents */
+  --pool: #0a6e9f;             /* competition-pool blue — primary CTA, active states */
+  --wake: #00b4d8;             /* water-surface cyan — highlights, race fills */
+  --lane: #e85d4a;             /* lane-rope red — danger, red flags */
+  --gold: #c49a22;             /* meet podium gold — amber, warnings */
+  --go: #1f8b5e;               /* race-start green — success states */
+  --violet: #5e4fa2;           /* analytics / data — unchanged role */
+
+  /* Semantic backgrounds */
+  --danger-bg: #fff1ef;
+  --warn-bg: #fdf8ec;
+  --good-bg: #edf7f3;
+  --pool-bg: #e8f4fb;          /* light water tint for active/info states */
+
+  /* Shape & depth */
+  --radius: 7px;
+  --radius-lg: 12px;
+  --shadow: 0 4px 24px rgba(10, 46, 74, 0.09), 0 1px 4px rgba(10, 46, 74, 0.06);
+  --shadow-sm: 0 2px 8px rgba(10, 46, 74, 0.07);
 }
 
+/* ── Reset ────────────────────────────────── */
 * {
   box-sizing: border-box;
 }
 
+/* ── Body — water-light shimmer background ── */
 body {
   margin: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(246, 244, 239, 0.96)),
-    repeating-linear-gradient(90deg, rgba(20, 125, 136, 0.06) 0 1px, transparent 1px 76px);
+  background-color: var(--bg);
+  background-image:
+    /* subtle diagonal caustic-light shimmer — reads as water, not a grid */
+    repeating-linear-gradient(
+      118deg,
+      rgba(0, 180, 216, 0.035) 0px,
+      rgba(0, 180, 216, 0.035) 1px,
+      transparent 1px,
+      transparent 64px
+    ),
+    repeating-linear-gradient(
+      28deg,
+      rgba(10, 110, 159, 0.025) 0px,
+      rgba(10, 110, 159, 0.025) 1px,
+      transparent 1px,
+      transparent 64px
+    );
   color: var(--ink);
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  line-height: 1.45;
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* ── Base elements ────────────────────────── */
 button,
 input,
 select {
@@ -45,10 +80,43 @@ button {
   cursor: pointer;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 780px;
+  margin-bottom: 12px;
+  font-size: clamp(32px, 4.8vw, 62px);
+  font-weight: 900;
+  line-height: 0.97;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: clamp(26px, 3.6vw, 44px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── App shell ────────────────────────────── */
 .app-shell {
   min-height: 100vh;
 }
 
+/* ── Top bar ──────────────────────────────── */
 .topbar {
   position: sticky;
   top: 0;
@@ -57,12 +125,14 @@ button {
   grid-template-columns: minmax(220px, 1fr) auto auto;
   gap: 16px;
   align-items: center;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.92);
-  padding: 12px 18px;
-  backdrop-filter: blur(12px);
+  /* deep-pool frosted bar — distinctive departure from the teal MedAI bar */
+  border-bottom: 1px solid rgba(10, 46, 74, 0.14);
+  background: rgba(10, 46, 74, 0.96);
+  padding: 11px 20px;
+  backdrop-filter: blur(14px);
 }
 
+/* ── Brand ────────────────────────────────── */
 .brand {
   display: inline-flex;
   min-width: 0;
@@ -70,44 +140,62 @@ button {
   gap: 12px;
   border: 0;
   background: transparent;
-  color: var(--ink);
+  color: #ffffff;
   text-align: left;
 }
 
+/* Brand mark: lane-rope cross-section — alternating pool blue + white bands */
 .brand-mark {
   position: relative;
   width: 42px;
   height: 42px;
   flex: 0 0 auto;
   overflow: hidden;
-  border: 1px solid #0f766e;
+  border: 1.5px solid rgba(0, 180, 216, 0.7);
   border-radius: 50%;
   background:
-    linear-gradient(120deg, transparent 0 35%, rgba(255, 255, 255, 0.7) 35% 40%, transparent 40%),
-    repeating-linear-gradient(180deg, #147d88 0 8px, #61b9c2 8px 11px);
+    /* glint */
+    linear-gradient(
+      128deg,
+      transparent 0 32%,
+      rgba(255, 255, 255, 0.55) 32% 38%,
+      transparent 38%
+    ),
+    /* lane rope bands */
+    repeating-linear-gradient(
+      180deg,
+      #0a6e9f 0 7px,
+      #00b4d8 7px 9px,
+      #f0f6fa 9px 12px,
+      #0a6e9f 12px 19px
+    );
 }
 
 .brand-title {
   display: block;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #ffffff;
 }
 
 .brand-subtitle {
   display: block;
-  color: var(--muted);
-  font-size: 13px;
+  color: rgba(0, 180, 216, 0.85);
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
+/* ── Nav ──────────────────────────────────── */
 .nav {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   justify-content: center;
 }
 
+/* Base interactive elements */
 .nav-button,
 .module-button,
 .term-button,
@@ -121,27 +209,40 @@ button {
 }
 
 .nav-button {
-  min-height: 38px;
-  padding: 8px 12px;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 800;
+  min-height: 36px;
+  padding: 7px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
-.nav-button.is-active {
-  border-color: var(--panel-strong);
-  background: var(--panel-strong);
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
 
+.nav-button.is-active {
+  border-color: var(--wake);
+  background: var(--wake);
+  color: var(--panel-strong);
+  font-weight: 800;
+}
+
+/* ── Role picker ──────────────────────────── */
 .role-picker {
   display: grid;
   gap: 4px;
-  min-width: 190px;
-  color: var(--muted);
-  font-size: 12px;
+  min-width: 196px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .role-picker select,
@@ -154,66 +255,73 @@ button {
 }
 
 .role-picker select {
-  min-height: 38px;
+  min-height: 36px;
   padding: 0 10px;
   text-transform: none;
 }
 
+/* ── Workspace layout ─────────────────────── */
 .workspace {
   display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
+  grid-template-columns: 336px minmax(0, 1fr);
   gap: 18px;
   max-width: 1440px;
   margin: 0 auto;
   padding: 18px;
 }
 
+/* ── Sidebar ──────────────────────────────── */
 .sidebar {
   position: sticky;
-  top: 78px;
+  top: 74px;
   align-self: start;
-  max-height: calc(100vh - 96px);
+  max-height: calc(100vh - 92px);
   overflow: auto;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.88);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: var(--shadow);
 }
 
+/* ── Sidebar fields ───────────────────────── */
 .field {
   display: grid;
-  gap: 7px;
-  padding: 14px;
+  gap: 6px;
+  padding: 13px 14px;
   border-bottom: 1px solid var(--line);
 }
 
 .field label {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .field input {
-  min-height: 42px;
+  min-height: 40px;
   padding: 0 12px;
 }
 
+/* ── Module filter ────────────────────────── */
 .module-filter {
   display: grid;
-  gap: 7px;
-  padding: 12px 14px;
+  gap: 6px;
+  padding: 11px 13px;
   border-bottom: 1px solid var(--line);
 }
 
 .module-button {
   display: grid;
-  grid-template-columns: 14px 1fr auto;
+  grid-template-columns: 12px 1fr auto;
   gap: 9px;
   align-items: center;
   min-height: 40px;
-  padding: 8px 10px;
+  padding: 7px 10px;
   text-align: left;
+  font-size: 13px;
+  transition: background 0.12s, border-color 0.12s;
 }
 
 .module-button span {
@@ -234,10 +342,11 @@ button {
 }
 
 .module-button.is-active {
-  border-color: var(--ink);
-  background: #f0f5f5;
+  border-color: var(--pool);
+  background: var(--pool-bg);
 }
 
+/* ── Quick stats ──────────────────────────── */
 .quick-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -254,32 +363,38 @@ button {
 
 .quick-stats strong {
   display: block;
-  font-size: 24px;
+  font-size: 22px;
+  font-weight: 900;
   line-height: 1;
+  color: var(--pool);
 }
 
 .quick-stats span {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
+/* ── Term list ────────────────────────────── */
 .term-list {
   display: grid;
-  gap: 6px;
-  padding: 10px;
+  gap: 5px;
+  padding: 9px;
 }
 
 .term-button {
   display: grid;
   gap: 3px;
-  padding: 10px;
+  padding: 9px 10px;
   text-align: left;
+  transition: background 0.12s, border-color 0.12s;
 }
 
 .term-button strong {
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .term-button span {
@@ -289,21 +404,23 @@ button {
 }
 
 .term-button.is-active {
-  border-color: var(--teal);
-  background: #eef8f8;
+  border-color: var(--pool);
+  background: var(--pool-bg);
 }
 
+/* ── Content panel ────────────────────────── */
 .content-panel {
   min-width: 0;
 }
 
 .panel-section {
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.94);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.96);
   box-shadow: var(--shadow);
 }
 
+/* ── Hero grid ────────────────────────────── */
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
@@ -313,66 +430,52 @@ button {
 }
 
 .intro {
-  padding: 24px;
+  padding: 26px 28px;
 }
 
+/* ── Eyebrow pill ─────────────────────────── */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  min-height: 26px;
-  border: 1px solid var(--line);
+  min-height: 24px;
+  border: 1px solid rgba(10, 110, 159, 0.25);
   border-radius: 999px;
   padding: 0 10px;
-  background: #f9fafb;
-  color: var(--teal);
-  font-size: 12px;
+  background: var(--pool-bg);
+  color: var(--pool);
+  font-size: 11px;
   font-weight: 900;
   text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
 
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  max-width: 780px;
-  margin-bottom: 12px;
-  font-size: clamp(34px, 5vw, 66px);
-  line-height: 0.98;
-  letter-spacing: 0;
-}
-
-h2 {
-  margin-bottom: 10px;
-  font-size: clamp(28px, 4vw, 46px);
-  line-height: 1.05;
-  letter-spacing: 0;
-}
-
-h3 {
-  margin-bottom: 8px;
-  font-size: 16px;
-}
-
+/* ── Lead text ────────────────────────────── */
 .lead {
   max-width: 760px;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
+/* ── Pool visual — Olympic 50m pool CSS art ─ */
 .pool-visual {
   position: relative;
   min-height: 270px;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
+  /* Richer pool: deep-end gradient + lane bands */
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.62), transparent 18% 82%, rgba(255, 255, 255, 0.55)),
-    repeating-linear-gradient(180deg, #bfe5e8 0 36px, #0f7d8a 36px 39px, #d8f3f4 39px 75px);
+    linear-gradient(
+      180deg,
+      #d4eef8 0%,
+      #9fd5ee 18%,
+      #3fa8d0 42%,
+      #0a6e9f 72%,
+      #063d5f 100%
+    );
 }
 
+/* Lane rope overlays */
 .pool-visual::before,
 .pool-visual::after {
   content: "";
@@ -380,15 +483,35 @@ h3 {
   inset: 0;
 }
 
+/* Vertical lane separators + rope floats */
 .pool-visual::before {
   background:
-    linear-gradient(90deg, transparent 0 8%, rgba(201, 79, 61, 0.32) 8% 8.8%, transparent 8.8% 91%, rgba(201, 79, 61, 0.32) 91% 91.8%, transparent 91.8%),
-    repeating-linear-gradient(90deg, transparent 0 78px, rgba(255, 255, 255, 0.55) 78px 80px);
+    /* side wall markers */
+    linear-gradient(
+      90deg,
+      transparent 0 4.5%,
+      rgba(232, 93, 74, 0.55) 4.5% 5.5%,
+      transparent 5.5% 94%,
+      rgba(232, 93, 74, 0.55) 94% 95.5%,
+      transparent 95.5%
+    ),
+    /* lane rope floats — repeating vertical rhythm */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 84px,
+      rgba(255, 255, 255, 0.48) 84px 87px
+    );
 }
 
+/* Surface light caustic shimmer */
 .pool-visual::after {
-  background: radial-gradient(circle at 62% 48%, rgba(17, 24, 39, 0.26) 0 6px, transparent 7px);
-  transform: skewX(-12deg);
+  background:
+    repeating-linear-gradient(
+      112deg,
+      rgba(255, 255, 255, 0.06) 0 2px,
+      transparent 2px 38px
+    );
+  mix-blend-mode: screen;
 }
 
 .pool-label {
@@ -396,44 +519,50 @@ h3 {
   right: 14px;
   bottom: 14px;
   left: 14px;
-  border: 1px solid rgba(17, 24, 39, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.82);
-  padding: 12px;
-  color: var(--ink);
+  background: rgba(10, 46, 74, 0.72);
+  backdrop-filter: blur(8px);
+  padding: 12px 14px;
+  color: #ffffff;
   font-weight: 800;
+  font-size: 14px;
 }
 
+/* ── Term / tool detail pages ─────────────── */
 .term-detail,
 .tool-page {
-  padding: 24px;
+  padding: 26px 28px;
 }
 
 .term-meta,
 .mini-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
   margin-bottom: 14px;
 }
 
+/* ── Tags ─────────────────────────────────── */
 .tag {
   display: inline-flex;
   align-items: center;
-  min-height: 26px;
+  min-height: 24px;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0 9px;
-  background: #f9fafb;
+  background: #f4f8fb;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
+  letter-spacing: 0.04em;
 }
 
 .tag.strong {
   color: #ffffff;
 }
 
+/* ── Detail grid ──────────────────────────── */
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -441,6 +570,7 @@ h3 {
   margin-top: 18px;
 }
 
+/* ── Info blocks & cards ──────────────────── */
 .info-block,
 .quiz,
 .check-item,
@@ -460,52 +590,62 @@ h3 {
 .info-label {
   margin-bottom: 6px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
+/* Semantic info-block variants */
 .coach-question {
-  background: #edf8f1;
-  border-color: #badcc7;
+  background: var(--good-bg);
+  border-color: #a8d8be;
 }
 
 .red-flag {
   background: var(--danger-bg);
-  border-color: #f0c2bb;
+  border-color: #edb5ae;
 }
 
 .use-now {
-  background: #eef4fb;
-  border-color: #c8d8ed;
+  background: var(--pool-bg);
+  border-color: #a8cbdf;
 }
 
 .role-note {
-  background: #f8f4ea;
-  border-color: #e5d2a5;
+  background: #faf6ed;
+  border-color: #deccaa;
 }
 
+/* ── Related terms pill row ───────────────── */
 .related {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 6px;
 }
 
 .related button {
-  min-height: 30px;
+  min-height: 28px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: #f8fafc;
+  background: #f2f7fb;
   color: var(--ink);
   padding: 0 10px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
+  transition: border-color 0.12s, background 0.12s;
 }
 
+.related button:hover {
+  border-color: var(--pool);
+  background: var(--pool-bg);
+}
+
+/* ── Quiz ─────────────────────────────────── */
 .quiz {
   margin-top: 14px;
   background: var(--warn-bg);
-  border-color: #e7cf8d;
+  border-color: #e0c97a;
 }
 
 .quiz-question {
@@ -515,21 +655,22 @@ h3 {
 
 .quiz-options {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .quiz-choice {
-  padding: 10px;
+  padding: 10px 12px;
   text-align: left;
+  transition: background 0.12s, border-color 0.12s;
 }
 
 .quiz-choice.is-correct {
-  border-color: var(--green);
-  background: #e8f6ee;
+  border-color: var(--go);
+  background: #ebf7f2;
 }
 
 .quiz-choice.is-wrong {
-  border-color: var(--coral);
+  border-color: var(--lane);
   background: #fff1ef;
 }
 
@@ -539,6 +680,7 @@ h3 {
   font-weight: 700;
 }
 
+/* ── Tool grid ────────────────────────────── */
 .tool-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -546,26 +688,33 @@ h3 {
   margin-top: 16px;
 }
 
+/* ── Scenario controls ────────────────────── */
 .scenario-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 14px 0;
+  gap: 7px;
+  margin: 13px 0;
 }
 
 .scenario-button {
-  min-height: 38px;
-  padding: 7px 11px;
+  min-height: 36px;
+  padding: 6px 12px;
   color: var(--muted);
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 13px;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
 }
 
 .scenario-button.is-active {
-  border-color: var(--teal);
-  background: #eef8f8;
-  color: var(--ink);
+  border-color: var(--pool);
+  background: var(--pool-bg);
+  color: var(--pool);
+  font-weight: 800;
 }
 
+/* ── Race chart — the signature element ──────
+   Pool-lane bars evoke a split-time display,
+   familiar to every elite coach worldwide.     */
 .race-chart {
   display: grid;
   gap: 10px;
@@ -574,24 +723,27 @@ h3 {
 
 .race-bar {
   display: grid;
-  grid-template-columns: 112px 1fr 48px;
+  grid-template-columns: 116px 1fr 52px;
   gap: 10px;
   align-items: center;
 }
 
 .race-track {
-  height: 18px;
+  height: 16px;
   overflow: hidden;
   border-radius: 999px;
-  background: #eef2f7;
+  background: #d8eaf5;
 }
 
+/* Race fill: pool-blue → wake cyan — reads as speed, not health */
 .race-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--teal), var(--amber));
+  background: linear-gradient(90deg, var(--pool), var(--wake));
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ── Checklists / sources / privacy ──────── */
 .check-list,
 .source-list,
 .privacy-list {
@@ -607,18 +759,20 @@ h3 {
   align-items: start;
 }
 
+/* Check number bubble: pool navy */
 .check-number {
   display: grid;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   place-items: center;
   border-radius: 50%;
   background: var(--panel-strong);
   color: #ffffff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
 }
 
+/* Muted body text inside cards */
 .check-item p,
 .source-item p,
 .privacy-rule p,
@@ -629,17 +783,46 @@ h3 {
   color: var(--muted);
 }
 
+/* Source links */
 .source-item a {
-  color: var(--teal);
+  color: var(--pool);
   font-weight: 800;
+  text-decoration: none;
 }
 
+.source-item a:hover {
+  text-decoration: underline;
+}
+
+/* ── Empty state ──────────────────────────── */
 .empty {
-  padding: 24px;
+  padding: 32px 24px;
   color: var(--muted);
   text-align: center;
+  font-size: 14px;
 }
 
+/* ── Focus / accessibility ────────────────── */
+:focus-visible {
+  outline: 2px solid var(--wake);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .race-fill {
+    transition: none;
+  }
+  .nav-button,
+  .module-button,
+  .scenario-button,
+  .quiz-choice,
+  .related button {
+    transition: none;
+  }
+}
+
+/* ── Responsive: tablet ───────────────────── */
 @media (max-width: 1040px) {
   .topbar {
     grid-template-columns: 1fr;
@@ -664,6 +847,7 @@ h3 {
   }
 }
 
+/* ── Responsive: mobile ───────────────────── */
 @media (max-width: 700px) {
   .topbar,
   .workspace {
@@ -683,5 +867,9 @@ h3 {
 
   .race-bar {
     grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: clamp(28px, 8vw, 40px);
   }
 }
