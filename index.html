@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="SwimAI Lexicon: practical AI literacy for competitive swim coaches, performance staff, and swim families."
+    />
+    <title>SwimAI Lexicon</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <button class="brand" id="homeButton" type="button">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>
+            <span class="brand-title">SwimAI Lexicon</span>
+            <span class="brand-subtitle">Better data, not less judgment.</span>
+          </span>
+        </button>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-button is-active" type="button" data-view="lexicon">Lexicon</button>
+          <button class="nav-button" type="button" data-view="lab">Race Lab</button>
+          <button class="nav-button" type="button" data-view="checklist">Tool Vetting</button>
+          <button class="nav-button" type="button" data-view="privacy">Athlete Data</button>
+          <button class="nav-button" type="button" data-view="sources">Sources</button>
+        </nav>
+
+        <label class="role-picker">
+          <span>Lens</span>
+          <select id="roleSelect"></select>
+        </label>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar" aria-label="Lexicon controls">
+          <div class="field">
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="Try video, prediction, privacy..." />
+          </div>
+
+          <div class="module-filter" id="moduleFilter"></div>
+
+          <div class="quick-stats" aria-label="Content summary">
+            <div>
+              <strong id="termCount">0</strong>
+              <span>terms</span>
+            </div>
+            <div>
+              <strong>6</strong>
+              <span>modules</span>
+            </div>
+          </div>
+
+          <div class="term-list" id="termList"></div>
+        </aside>
+
+        <section class="content-panel" id="contentPanel" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
