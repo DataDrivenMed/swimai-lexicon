@@ -1106,40 +1106,58 @@ p  { margin: 0; }
 .topbar-social {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding-left: 12px;
+  gap: 6px;
+  padding-left: 14px;
   border-left: 1px solid var(--chrome-line);
 }
 .topbar-social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 7px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   border: 1px solid var(--chrome-line-strong);
-  background: transparent;
-  color: var(--chrome-soft);
+  background: rgba(255,255,255,0.06);
   text-decoration: none;
   transition: all 0.15s;
   flex-shrink: 0;
 }
-.topbar-social-link:hover {
-  background: rgba(0,180,216,0.12);
-  border-color: var(--wake);
-  color: var(--wake);
-}
 .topbar-social-link svg {
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
   display: block;
 }
-/* Email link in topbar — slightly different icon treatment */
+
+/* LinkedIn — brand blue */
+.topbar-social-link--linkedin {
+  color: #5ba4cf;
+}
+.topbar-social-link--linkedin:hover {
+  background: rgba(10, 102, 194, 0.25);
+  border-color: #0a66c2;
+  color: #ffffff;
+}
+
+/* Substack — brand orange */
+.topbar-social-link--substack {
+  color: #f5a623;
+}
+.topbar-social-link--substack:hover {
+  background: rgba(255,111,0,0.2);
+  border-color: #ff6f00;
+  color: #ffb347;
+}
+
+/* Email — wake cyan to match brand */
+.topbar-social-link--email {
+  color: var(--wake);
+}
 .topbar-social-link--email:hover {
-  background: rgba(26,127,82,0.12);
-  border-color: var(--go);
-  color: var(--go);
+  background: rgba(0,180,216,0.15);
+  border-color: var(--wake);
+  color: #ffffff;
 }
 
 /* ── Breadcrumb — back to In Practice ────────── */
